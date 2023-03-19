@@ -1,0 +1,57 @@
+ian@ian-HP-Convertible-x360-11-ab1XX:~$ ipython3
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.31.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from scipy import integrate
+
+In [2]: result = quad(my_function, a, b)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-c1dfad35fcf1> in <module>
+----> 1 result = quad(my_function, a, b)
+
+NameError: name 'quad' is not defined
+
+In [3]: x2 = lambda x: x**2
+   ...: integrate.quad(x2, 0, 4)
+Out[3]: (21.333333333333336, 2.368475785867001e-13)
+
+In [4]: invexp = lambda x: np.exp(-x)
+   ...: integrate.quad(invexp, 0, np.inf)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-4-c9333577b149> in <module>
+      1 invexp = lambda x: np.exp(-x)
+----> 2 integrate.quad(invexp, 0, np.inf)
+
+NameError: name 'np' is not defined
+
+In [5]: from scipy import integrate
+
+In [6]: import numpy as np
+
+In [7]: invexp = lambda x: np.exp(-x)
+
+In [8]: integrate.quad(invexp,0, np.inf)
+Out[8]: (1.0000000000000002, 5.842606742906004e-11)
+
+In [9]: f=lambda x, a: a*x
+
+In [10]: import numpy as np
+    ...: from scipy.integrate import trapz
+    ...: 
+    ...: a = 0
+    ...: b = np.pi
+    ...: n = 11
+    ...: h = (b - a) / (n - 1)
+    ...: x = np.linspace(a, b, n)
+    ...: f = np.sin(x)
+    ...: 
+    ...: I_trapz = trapz(f,x)
+    ...: I_trap = (h/2)*(f[0] + 2 * sum(f[1:n-1]) + f[n-1])
+    ...: 
+    ...: print(I_trapz)
+    ...: print(I_trap)
+1.9835235375094544
+1.9835235375094546
