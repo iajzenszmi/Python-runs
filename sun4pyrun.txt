@@ -1,0 +1,65 @@
+ian@ian-Latitude-3190-2-in-1:~/build/sun4$ cat ~/sun4.py
+#!/usr/bin/python
+#!/usr/lib/x86_64-linux-gnu/libpython3.10.so.1.0
+import ephem
+# Set the observer location to Melbourne
+melbourne = ephem.Observer()
+melbourne.lat = '-37.8136'  # Latitude of Melbourne
+melbourne.lon = '144.9631'  # Longitude of Melbourne
+
+# Get the current date
+current_date = ephem.now()
+
+# Calculate sunrise and sunset times
+sunrise = melbourne.previous_rising(ephem.Sun(), start=current_date)
+sunset = melbourne.next_setting(ephem.Sun(), start=current_date)
+
+# Convert the times to local timezone
+sunrise_local = ephem.localtime(sunrise)
+sunset_local = ephem.localtime(sunset)
+
+# Print the sunrise and sunset times
+print("Sunrise:", sunrise_local.time())
+print("Sunset:", sunset_local.time())
+
+
+
+ian@ian-Latitude-3190-2-in-1:~/build/sun4$ cd 
+ian@ian-Latitude-3190-2-in-1:~$ pyinstaller sun4.py
+313 INFO: PyInstaller: 5.13.0
+313 INFO: Python: 3.10.6
+315 INFO: Platform: Linux-5.19.0-45-generic-x86_64-with-glibc2.35
+316 INFO: wrote /home/ian/sun4.spec
+318 INFO: Extending PYTHONPATH with paths
+['/home/ian']
+818 INFO: checking Analysis
+822 INFO: checking PYZ
+825 INFO: checking PKG
+826 INFO: Bootloader /home/ian/.local/lib/python3.10/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+826 INFO: checking EXE
+827 INFO: checking COLLECT
+WARNING: The output directory "/home/ian/dist/sun4" and ALL ITS CONTENTS will be REMOVED! Continue? (y/N)y
+On your own risk, you can use the option `--noconfirm` to get rid of this question.
+2953 INFO: Removing dir /home/ian/dist/sun4
+2960 INFO: Building COLLECT COLLECT-00.toc
+2998 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+ian@ian-Latitude-3190-2-in-1:~$ cd build/sun4
+ian@ian-Latitude-3190-2-in-1:~/build/sun4$ ls
+abc.pyc               EXE-00.toc            os.pyc             sun4.pkg
+Analysis-00.toc       fnmatch.pyc           pathlib.pyc        sun4.spec
+base_library.zip      functools.pyc         PKG-00.toc         tokenize.pyc
+build                 genericpath.pyc       posixpath.pyc      token.pyc
+codecs.pyc            heapq.pyc             PYZ-00.pyz         traceback.pyc
+COLLECT-00.toc        io.pyc                PYZ-00.toc         types.pyc
+collections           keyword.pyc           reprlib.pyc        urllib
+_collections_abc.pyc  libpython3.10.so.1.0  re.pyc             warnings.pyc
+copyreg.pyc           linecache.pyc         sre_compile.pyc    warn-sun4.txt
+dist                  locale.pyc            sre_constants.pyc  weakref.pyc
+encodings             localpycs             sre_parse.pyc      _weakrefset.pyc
+enum.pyc              ntpath.pyc            stat.pyc           xref-sun4.html
+ephem                 operator.pyc          sun4
+ian@ian-Latitude-3190-2-in-1:~/build/sun4$ ./sun4
+Sunrise: 07:36:01.751668
+Sunset: 17:09:44.226490
+ian@ian-Latitude-3190-2-in-1:~/build/sun4$ 
+
